@@ -1,0 +1,19 @@
+---
+// src/components/Header.astro
+import Layout from '../layouts/Layout.astro';
+
+const user = {
+  name: "Sebastián López",
+  code: "1152196",
+  photo: "assets/perfil.jpg"
+}
+---
+
+<header class="flex justify-end items-center gap-4 p-4 border-b">
+  <div class="text-right">
+    <div class="font-semibold">{user.name}</div>
+    <div class="text-sm text-gray-500">{user.code}</div>
+  </div>
+  <img src={user.photo} alt="Perfil" class="w-10 h-10 rounded-full border" />
+  
+</header>

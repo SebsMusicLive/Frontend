@@ -1,0 +1,34 @@
+---
+// src/pages/matricula.astro
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout title="Matrícula Académica">
+  <div class="flex min-h-screen bg-white">
+    <!-- Sidebar -->
+    <Sidebar />
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+      <!-- Header -->
+      <Header />
+
+      <!-- Centered Content Below Header -->
+      <main class="flex-1 flex items-center justify-center px-4">
+        <section class="text-center">
+          <h1 class="text-3xl font-semibold text-blue-900 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 mr-2 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 11V9h2v2H9zm0 2h2v2H9v-2z" />
+            </svg>
+            Matrícula Académica
+          </h1>
+          <p class="text-gray-700 max-w-lg mx-auto">
+            En este momento no se encuentran disponibles horarios de inclusión y cancelación.
+          </p>
+        </section>
+      </main>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,92 @@
+---
+import '../styles/global.css';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio de Sesión</title>
+  </head>
+  <body class="min-h-screen bg-white font-sans">
+    <div class="grid grid-cols-1 md:grid-cols-2 h-screen">
+      
+      <!-- Panel izquierdo: formulario -->
+      <div class="flex flex-col justify-center px-8 sm:px-16 md:px-24">
+        <h1 class="text-3xl font-bold text-blue-900 mb-8 leading-tight">
+          ¡Bienvenido a nuestro<br />portal!
+        </h1>
+
+        <form class="flex flex-col gap-6">
+          <!-- Código -->
+          <div class="relative">
+            <label class="text-sm font-semibold text-gray-800 mb-1 block">Código</label>
+            <div class="relative">
+              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 10a4 4 0 100-8 4 4 0 000 8zm-7 7a7 7 0 0114 0H3z"/>
+              </svg>
+              <input
+                type="text"
+                placeholder="Ingresa tu código"
+                class="w-full pl-10 border border-blue-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              />
+            </div>
+          </div>
+
+          <!-- Documento -->
+          <div class="relative">
+            <label class="text-sm font-semibold text-gray-800 mb-1 block">Documento</label>
+            <div class="relative">
+              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h5a1 1 0 100-2H6V4h8v4a1 1 0 002 0V4a2 2 0 00-2-2H6z"/>
+              </svg>
+              <input
+                type="text"
+                placeholder="Ingresa tu documento"
+                class="w-full pl-10 border border-blue-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              />
+            </div>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="relative">
+            <label class="text-sm font-semibold text-gray-800 mb-1 block">Contraseña</label>
+            <div class="relative">
+              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5 8a5 5 0 1110 0v2h1a1 1 0 011 1v7a1 1 0 01-1 1H4a1 1 0 01-1-1v-7a1 1 0 011-1h1V8zm8 0a3 3 0 10-6 0v2h6V8z" clip-rule="evenodd" />
+              </svg>
+              <input
+                type="password"
+                placeholder="Ingresa tu contraseña"
+                class="w-full pl-10 border border-blue-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              />
+            </div>
+          </div>
+
+          <!-- Botón -->
+          <button
+            type="submit"
+            class="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 flex items-center justify-center gap-2"
+          >
+            Iniciar Sesión
+            <span>➡️</span>
+          </button>
+        </form>
+
+        <div class="mt-10 text-sm text-gray-500">
+          <p class="font-semibold text-gray-800">Lumen Instituto Académico</p>
+          <p>© 2025 LIPS</p>
+        </div>
+      </div>
+
+      <!-- Panel derecho: imagen -->
+      <div class="hidden md:block">
+        <img
+          src="/assets/login_image.jpg"
+          alt="Estudiantes"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </body>
+</html>

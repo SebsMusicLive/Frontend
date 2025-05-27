@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Header from '../components/Header.astro';
+import { IconFileText, IconDownload, IconBook2 } from '@tabler/icons-react';
+---
+
+<Layout>
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <Sidebar active="Materias" />
+
+    <div class="flex-1 flex flex-col">
+      <!-- Header -->
+      <Header />
+
+      <!-- Contenido principal -->
+      <main class="p-6">
+        <div class="flex items-center gap-2 mb-4">
+          <IconBook2 class="text-[#173E94] w-6 h-6" />
+          <h2 class="text-xl font-semibold text-[#173E94]">Materias matriculadas</h2>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-center border border-gray-300 rounded">
+            <thead class="bg-gray-100 text-gray-700">
+              <tr>
+                <th class="border border-gray-300 px-2 py-1">Materia</th>
+                <th class="border border-gray-300 px-2 py-1">Nombre</th>
+                <th class="border border-gray-300 px-2 py-1">Asistencia</th>
+                <th class="border border-gray-300 px-2 py-1">Semestre</th>
+                <th class="border border-gray-300 px-2 py-1">1P</th>
+                <th class="border border-gray-300 px-2 py-1">2P</th>
+                <th class="border border-gray-300 px-2 py-1">3P</th>
+                <th class="border border-gray-300 px-2 py-1">EX</th>
+                <th class="border border-gray-300 px-2 py-1">DEF</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: 4 }).map((_, index) => (
+                <tr class={index % 2 === 0 ? "bg-blue-50" : ""}>
+                  <td class="border border-gray-300 px-2 py-1 font-semibold">115</td>
+                  <td class="border border-gray-300 px-2 py-1">-</td>
+                  <td class="border border-gray-300 px-2 py-1">
+                    <button>
+                      <IconFileText class="w-4 h-4 text-[#173E94] mx-auto" />
+                    </button>
+                  </td>
+                  <td class="border border-gray-300 px-2 py-1">-</td>
+                  <td class="border border-gray-300 px-2 py-1">-</td>
+                  <td class="border border-gray-300 px-2 py-1">-</td>
+                  <td class="border border-gray-300 px-2 py-1">-</td>
+                  <td class="border border-gray-300 px-2 py-1">-</td>
+                  <td class="border border-gray-300 px-2 py-1">-</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="flex justify-end mt-4">
+          <button class="bg-[#173E94] hover:bg-[#132f70] text-white font-medium px-4 py-2 rounded-lg shadow flex items-center gap-2">
+            <IconDownload class="w-4 h-4" />
+            Reporte de materias
+          </button>
+        </div>
+      </main>
+    </div>
+  </div>
+</Layout>

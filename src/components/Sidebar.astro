@@ -1,0 +1,49 @@
+---
+const menu = [
+  {
+    label: "Información personal",
+    icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 10a4 4 0 100-8 4 4 0 000 8zm-7 7a7 7 0 0114 0H3z"/></svg>`
+  },
+  {
+    label: "Asignaturas inscritas",
+    icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a1 1 0 000 2h12a1 1 0 100-2H4zM3 7a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm1 4a1 1 0 000 2h12a1 1 0 100-2H4zm-1 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>`
+  },
+  {
+    label: "Horario",
+    icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M6 2a1 1 0 000 2h1v1a1 1 0 102 0V4h2v1a1 1 0 102 0V4h1a1 1 0 100-2H6zM3 7a2 2 0 012-2h10a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>`
+  },
+  {
+    label: "Notas",
+    icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4z"/></svg>`
+  }
+];
+
+const logout = {
+  label: "Cerrar sesión",
+  icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h6a1 1 0 010 2H5v10h5a1 1 0 110 2H4a1 1 0 01-1-1V4zm9.293 3.293a1 1 0 011.414 0L17 10l-3.293 3.293a1 1 0 11-1.414-1.414L14.586 11H9a1 1 0 110-2h5.586l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>`
+};
+---
+
+<aside class="bg-blue-900 text-white w-64 min-h-screen p-6 flex flex-col justify-between">
+  <!-- Encabezado + menú -->
+  <div>
+    <div class="text-2xl font-bold tracking-wide mb-8">Mi Perfil</div>
+
+    <nav class="flex flex-col gap-4">
+      {menu.map(({ icon, label }) => (
+        <a href="#" class="flex items-center gap-3 hover:text-blue-200 transition-colors">
+          <span class="shrink-0" set:html={icon}></span>
+          <span>{label}</span>
+        </a>
+      ))}
+    </nav>
+  </div>
+
+  <!-- Cerrar sesión abajo -->
+  <div class="pt-6 border-t border-blue-700 mt-8">
+    <a href="#" class="flex items-center gap-3 hover:text-blue-200 transition-colors">
+      <span class="shrink-0" set:html={logout.icon}></span>
+      <span>{logout.label}</span>
+    </a>
+  </div>
+</aside>

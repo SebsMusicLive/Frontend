@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout title="Horario de clases">
+  <div class="flex min-h-screen bg-white">
+    <Sidebar />
+
+    <main class="flex-1 px-10 pt-8">
+      <Header />
+
+      <!-- Contenedor -->
+      <section class="max-w-5xl mx-auto mt-10 px-4">
+  <!-- Título -->
+  <div class="flex items-center mb-6 gap-2">
+    <div class="w-3 h-3 rounded-full bg-blue-900"></div>
+    <h1 class="text-2xl font-semibold text-blue-900">Horario de clases</h1>
+  </div>
+
+  <!-- Tabla -->
+  <div class="overflow-x-auto border border-gray-300 rounded-xl shadow-md">
+    <table class="w-full text-sm text-center border-collapse">
+      <thead class="bg-blue-50 text-blue-900 font-semibold">
+        <tr>
+          <th class="border px-4 py-2">Hora</th>
+          <th class="border px-4 py-2">Lunes</th>
+          <th class="border px-4 py-2">Martes</th>
+          <th class="border px-4 py-2">Miércoles</th>
+          <th class="border px-4 py-2">Jueves</th>
+          <th class="border px-4 py-2">Viernes</th>
+          <th class="border px-4 py-2">Sábado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {[
+          '06:00–07:00', '07:00–08:00', '08:00–09:00', '10:00–11:00',
+          '11:00–12:00', '12:00–13:00', '13:00–14:00', '14:00–15:00',
+          '16:00–17:00'
+        ].map((hora) => (
+          <tr>
+            <td class="border px-4 py-2 font-medium">{hora}</td>
+            {[...Array(6)].map(() => (
+              <td class="border px-4 py-2 text-gray-600">–</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+<!-- Botón corregido -->
+<div class="flex justify-end mt-8">
+<button class="flex items-center gap-2 bg-blue-900 hover:bg-blue-800 text-white px-6 py-2 rounded-xl shadow-md transition duration-200">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+  </svg>
+  <span class="text-sm font-semibold">Descargar horario de clases</span>
+</button>
+
+
+
+</div>
+
+
+
+</section>
+
+    </main>
+  </div>
+</Layout>
