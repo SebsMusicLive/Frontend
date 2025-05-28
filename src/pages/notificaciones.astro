@@ -1,0 +1,123 @@
+---
+// src/components/Notifications.astro
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Header from '../components/Header.astro';
+
+const notifications = [
+  {
+    from: "Docente grupo 1152172 - A",
+    message: "Buenas tardes jóvenes, los esperamos en JJ Madonado",
+    status: "Leído",
+    date: "07/05/2025 07:00",
+    read: true
+  },
+  { from: "-", message: "-", status: "-", date: "-", read: false },
+  { from: "-", message: "-", status: "-", date: "-", read: false }
+];
+
+const totalRecords = 92;
+const showingRecords = "1 al 10";
+---
+
+<Layout title="Notificaciones">
+  <div class="flex min-h-screen bg-gray-50">
+    <Sidebar />
+    
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <Header />
+      
+      <main class="flex-1 overflow-y-auto p-6">
+        <div class="max-w-7xl mx-auto">
+          <!-- Encabezado mejorado -->
+          <div class="flex justify-between items-center mb-8">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-800">Notificaciones</h1>
+              <p class="text-sm text-gray-500 mt-1">Gestiona tus notificaciones recibidas</p>
+            </div>
+            <div class="text-right">
+              <p class="text-sm font-medium text-gray-700">Sebastián López</p>
+              <p class="text-xs text-gray-500">1152196</p>
+            </div>
+          </div>
+
+          <!-- Panel de notificaciones mejorado -->
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <!-- Controles superiores con estilo moderno -->
+            <div class="px-6 py-4 border-b border-gray-100 bg-white flex items-center justify-between">
+              <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-600">Mostrar</span>
+                <div class="relative">
+                  <select class="appearance-none bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300">
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </div>
+                </div>
+                <span class="text-sm text-gray-600">registros</span>
+              </div>
+            </div>
+
+            <!-- Tabla rediseñada -->
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">De</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mensaje</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lectura</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  {notifications.map((notification, index) => (
+                    <tr key={index} class={notification.from === '-' ? 'text-gray-300' : 'hover:bg-blue-50 transition-colors duration-150'}>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">{notification.from}</div>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="text-sm text-gray-900 max-w-md">{notification.message}</div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span class={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                          notification.status === 'Leído' 
+                            ? 'bg-green-100 text-green-800' 
+                            : 'bg-gray-100 text-gray-800'
+                        }`}>
+                          {notification.status}
+                        </span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-500">{notification.date}</div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pie de tabla mejorado -->
+            <div class="px-6 py-4 border-t border-gray-100 bg-white flex items-center justify-between">
+              <p class="text-sm text-gray-600">
+                Mostrando registros del <span class="font-medium">{showingRecords}</span> de un total de <span class="font-medium">{totalRecords}</span> registros
+              </p>
+              <div class="flex space-x-2">
+                <button class="px-3 py-1 border border-gray-200 rounded-md text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50" disabled>
+                  Anterior
+                </button>
+                <button class="px-3 py-1 border border-gray-200 rounded-md text-sm text-gray-600 hover:bg-gray-50">
+                  Siguiente
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</Layout>

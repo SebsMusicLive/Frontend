@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Header from '../components/Header.astro';
+---
+<Layout title="Foro estudiantil">
+<div class="flex min-h-screen bg-white">
+  <!-- Sidebar -->
+  <Sidebar />
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col">
+    <Header />
+
+    <main class="flex-1 p-6 grid grid-cols-3 gap-6">
+      <!-- Foro principal -->
+      <section class="col-span-2">
+        <h2 class="text-2xl font-semibold text-blue-900 mb-4 flex items-center gap-2">
+          <svg class="w-6 h-6 text-blue-900" fill="currentColor" viewBox="0 0 24 24"><path d="M2 5a2 2 0 012-2h16a2 2 0 012 2v12a2 2 0 01-2 2H6l-4 4V5z"/></svg>
+          Foro estudiantil
+        </h2>
+
+        <!-- Publicar -->
+        <div class="flex items-start gap-4 mb-6">
+          <img src="/assets/perfil.jpg" alt="User" class="w-10 h-10 rounded-full border" />
+          <input type="text" placeholder="¿Qué estas pensando?" class="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none" />
+          <button class="bg-blue-900 text-white rounded-full px-4 py-2">Postear</button>
+        </div>
+
+        <!-- Discusión destacada -->
+        <article class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded mb-6">
+          <div class="text-sm text-blue-700 font-semibold mb-2">Discusión del día</div>
+          <div class="flex items-center gap-4 mb-2">
+            <img src="/assets/mujer.jpg" alt="Sara" class="w-10 h-10 rounded-full" />
+            <div>
+              <div class="font-semibold">Sara Angarita <span class="text-gray-400 text-sm ml-2">Hace 1 hora</span></div>
+              <div class="text-sm text-gray-500">saragarita@lumen.edu.co</div>
+            </div>
+          </div>
+          <p class="text-lg font-medium mb-2">Preparación para exámenes: Consejos y organización del tiempo</p>
+          <div class="flex gap-6 text-sm text-gray-500">
+            <div>♥ 345</div>
+            <div>👁️ 25</div>
+            <div>💬 125</div>
+            <div>⭐ 37</div>
+          </div>
+        </article>
+
+        <!-- Lista de publicaciones -->
+        <ul class="space-y-4">
+          <li>
+            <p class="font-semibold">&#191;Cómo organizar tu tiempo durante parciales?</p>
+            <div class="text-sm text-gray-500">Juan Arguello • 57</div>
+          </li>
+          <li>
+            <p class="font-semibold">Guía rápida para entender álgebra lineal</p>
+            <div class="text-sm text-gray-500">Laura Torres • 42</div>
+          </li>
+          <li>
+            <p class="font-semibold">Apps que todo estudiante debe tener</p>
+            <div class="text-sm text-gray-500">Diego Ramírez • 42</div>
+          </li>
+          <li>
+            <p class="font-semibold">¡Alguien usa Notion para organizar materias?</p>
+            <div class="text-sm text-gray-500">Mateo Castillo • 72</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Eventos Académicos -->
+      <aside class="col-span-1">
+        <h3 class="text-xl font-semibold text-blue-900 mb-4">Eventos académicos</h3>
+        <ul class="space-y-4 text-sm text-gray-800">
+          <li>
+            <div class="font-semibold">12 de mayo</div>
+            <div>Taller de escritura academica</div>
+            <div class="text-gray-500 text-xs">Aula 203, edificio humanidades</div>
+          </li>
+          <li>
+            <div class="font-semibold">15 de mayo</div>
+            <div>Feria de proyectos de ingeniería</div>
+            <div class="text-gray-500 text-xs">Patio central</div>
+          </li>
+          <li>
+            <div class="font-semibold">22 de mayo</div>
+            <div>Conferencia: La inteligencia artificial en la educación</div>
+            <div class="text-gray-500 text-xs">Biblioteca Cote Lamus</div>
+          </li>
+          <li>
+            <div class="font-semibold">30 de mayo</div>
+            <div>Charla con egresados de Ingeniería en Sistemas</div>
+            <div class="text-gray-500 text-xs">Biblioteca Cote Lamus</div>
+          </li>
+        </ul>
+      </aside>
+    </main>
+  </div>
+</div>
+<Layout></Layout>

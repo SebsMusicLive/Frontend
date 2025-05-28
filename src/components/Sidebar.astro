@@ -2,19 +2,38 @@
 const menu = [
   {
     label: "Información personal",
+    href:"/dashboard",
     icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 10a4 4 0 100-8 4 4 0 000 8zm-7 7a7 7 0 0114 0H3z"/></svg>`
   },
   {
     label: "Asignaturas inscritas",
+    href:"/matriculas",
     icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a1 1 0 000 2h12a1 1 0 100-2H4zM3 7a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm1 4a1 1 0 000 2h12a1 1 0 100-2H4zm-1 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>`
   },
   {
     label: "Horario",
+    href:"/horario",
     icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M6 2a1 1 0 000 2h1v1a1 1 0 102 0V4h2v1a1 1 0 102 0V4h1a1 1 0 100-2H6zM3 7a2 2 0 012-2h10a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>`
   },
   {
     label: "Notas",
+    href:"/notas",
     icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4z"/></svg>`
+  },
+  {
+    label: "Foro",
+    href:"/foro",
+    icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M2 5a2 2 0 012-2h16a2 2 0 012 2v12a2 2 0 01-2 2H6l-4 4V5z"/></svg>`
+  },
+  {
+    label: "Notificaciones",
+    href:"/notificaciones",
+    icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v4H3a1 1 0 000 2h14a1 1 0 000-2h-1V8a6 6 0 00-6-6zM8 18a2 2 0 104 0H8z"/></svg>`
+  },
+  {
+    label: "Recibos de pago",
+    href:"/recibos",
+    icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M4 3a1 1 0 00-1 1v12a1 1 0 001.447.894L6 16.118l1.553.776a1 1 0 00.894 0L10 16.118l1.553.776a1 1 0 00.894 0L14 16.118l1.553.776A1 1 0 0017 16V4a1 1 0 00-1-1H4z"/></svg>`
   }
 ];
 
@@ -30,8 +49,8 @@ const logout = {
     <div class="text-2xl font-bold tracking-wide mb-8">Mi Perfil</div>
 
     <nav class="flex flex-col gap-4">
-      {menu.map(({ icon, label }) => (
-        <a href="#" class="flex items-center gap-3 hover:text-blue-200 transition-colors">
+      {menu.map(({ icon, label, href }) => (
+        <a href={href} class="flex items-center gap-3 hover:text-blue-200 transition-colors">
           <span class="shrink-0" set:html={icon}></span>
           <span>{label}</span>
         </a>
