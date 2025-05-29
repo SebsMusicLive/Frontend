@@ -1,4 +1,6 @@
 ---
+// src/components/Sidebar.astro (o la ruta donde lo tengas)
+
 const menu = [
   {
     label: "Información personal",
@@ -41,28 +43,64 @@ const logout = {
   label: "Cerrar sesión",
   icon: `<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h6a1 1 0 010 2H5v10h5a1 1 0 110 2H4a1 1 0 01-1-1V4zm9.293 3.293a1 1 0 011.414 0L17 10l-3.293 3.293a1 1 0 11-1.414-1.414L14.586 11H9a1 1 0 110-2h5.586l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>`
 };
+
+// Define la ruta a tu página de login.
+// Asegúrate que '/login.astro' sea correcto o ajústalo (ej. '/')
+const LOGIN_PAGE_URL = '/login';
 ---
 
 <aside class="bg-blue-900 text-white w-64 min-h-screen p-6 flex flex-col justify-between">
-  <!-- Encabezado + menú -->
   <div>
     <div class="text-2xl font-bold tracking-wide mb-8">Mi Perfil</div>
 
     <nav class="flex flex-col gap-4">
       {menu.map(({ icon, label, href }) => (
-        <a href={href} class="flex items-center gap-3 hover:text-blue-200 transition-colors">
-          <span class="shrink-0" set:html={icon}></span>
+        <a 
+          href={href} 
+          class:list={[
+            "flex items-center gap-3 hover:text-blue-200 transition-colors",
+            { 'font-bold text-blue-100 bg-blue-800 rounded px-2 py-1': Astro.url.pathname === href || (href !== '/' && Astro.url.pathname.startsWith(href)) } // Lógica mejorada para enlace activo
+          ]}
+        >
+          <Fragment set:html={icon} />
           <span>{label}</span>
         </a>
       ))}
     </nav>
   </div>
 
-  <!-- Cerrar sesión abajo -->
   <div class="pt-6 border-t border-blue-700 mt-8">
-    <a href="#" class="flex items-center gap-3 hover:text-blue-200 transition-colors">
-      <span class="shrink-0" set:html={logout.icon}></span>
+    <a href="#" id="logoutLink" class="flex items-center gap-3 hover:text-blue-200 transition-colors">
+      <Fragment set:html={logout.icon} />
       <span>{logout.label}</span>
     </a>
   </div>
 </aside>
+
+<script define:vars={{ LOGIN_PAGE_URL }}>
+  const logoutLink = document.getElementById('logoutLink');
+
+  if (logoutLink) {
+    logoutLink.addEventListener('click', (event) => {
+      event.preventDefault(); // Previene la navegación del enlace href="#"
+      
+      console.log('Cerrando sesión desde el Sidebar...');
+      
+      // 1. Eliminar el token de localStorage
+      // Asegúrate de que 'authToken' sea la clave correcta que usaste al guardar el token en login.astro
+      localStorage.removeItem('authToken'); 
+      console.log('Token "authToken" eliminado de localStorage.');
+
+      // Opcional: Puedes querer limpiar otros datos relacionados con la sesión del usuario
+      // localStorage.removeItem('userInfo');
+      // sessionStorage.clear(); // Si usas sessionStorage para algo
+
+      // 2. Redirigir a la página de login
+      window.location.href = LOGIN_PAGE_URL; 
+    });
+  } else {
+    // Este console.warn solo se mostraría si el elemento con id="logoutLink" no se encuentra en esta página,
+    // lo cual no debería suceder si el HTML de arriba y este script están en el mismo archivo Sidebar.astro.
+    console.warn('El enlace de logout (id="logoutLink") no fue encontrado en el Sidebar.');
+  }
+</script>
