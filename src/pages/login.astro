@@ -1,92 +1,166 @@
 ---
-import '../styles/global.css';
+// src/pages/login.astro
+import '../styles/global.css'; // Asegúrate que esta ruta a tus estilos sea correcta
+
+// Define la URL de tu backend aquí para fácil acceso
+const BACKEND_URL = 'http://localhost:8081'; // Asegúrate que este sea el puerto de tu Spring Boot
 ---
 
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inicio de Sesión</title>
-  </head>
-  <body class="min-h-screen bg-white font-sans">
+</head>
+<body class="min-h-screen bg-white font-sans">
     <div class="grid grid-cols-1 md:grid-cols-2 h-screen">
-      
-      <!-- Panel izquierdo: formulario -->
-      <div class="flex flex-col justify-center px-8 sm:px-16 md:px-24">
-        <h1 class="text-3xl font-bold text-blue-900 mb-8 leading-tight">
-          ¡Bienvenido a nuestro<br />portal!
-        </h1>
+        
+        <div class="flex flex-col justify-center px-8 sm:px-16 md:px-24">
+            <h1 class="text-3xl font-bold text-blue-900 mb-8 leading-tight">
+                ¡Bienvenido a nuestro<br />portal!
+            </h1>
 
-        <form class="flex flex-col gap-6">
-          <!-- Código -->
-          <div class="relative">
-            <label class="text-sm font-semibold text-gray-800 mb-1 block">Código</label>
-            <div class="relative">
-              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 10a4 4 0 100-8 4 4 0 000 8zm-7 7a7 7 0 0114 0H3z"/>
-              </svg>
-              <input
-                type="text"
-                placeholder="Ingresa tu código"
-                class="w-full pl-10 border border-blue-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
-              />
+            <form id="loginForm" class="flex flex-col gap-6">
+                <div class="relative">
+                    <label for="codigo" class="text-sm font-semibold text-gray-800 mb-1 block">Código</label>
+                    <div class="relative">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 10a4 4 0 100-8 4 4 0 000 8zm-7 7a7 7 0 0114 0H3z"/>
+                        </svg>
+                        <input
+                            type="text"
+                            id="codigo"
+                            name="codigo"
+                            placeholder="Ingresa tu código"
+                            class="w-full pl-10 border border-blue-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        />
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <label for="documento" class="text-sm font-semibold text-gray-800 mb-1 block">Documento</label>
+                    <div class="relative">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h5a1 1 0 100-2H6V4h8v4a1 1 0 002 0V4a2 2 0 00-2-2H6z"/>
+                        </svg>
+                        <input
+                            type="text"
+                            id="documento"
+                            name="documento"
+                            placeholder="Ingresa tu documento"
+                            class="w-full pl-10 border border-blue-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        />
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <label for="contrasena" class="text-sm font-semibold text-gray-800 mb-1 block">Contraseña</label>
+                    <div class="relative">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 8a5 5 0 1110 0v2h1a1 1 0 011 1v7a1 1 0 01-1 1H4a1 1 0 01-1-1v-7a1 1 0 011-1h1V8zm8 0a3 3 0 10-6 0v2h6V8z" clip-rule="evenodd" />
+                        </svg>
+                        <input
+                            type="password"
+                            id="contrasena"
+                            name="contrasena"
+                            placeholder="Ingresa tu contraseña"
+                            class="w-full pl-10 border border-blue-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        />
+                    </div>
+                </div>
+
+                <button
+                    type="submit"
+                    class="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 flex items-center justify-center gap-2"
+                >
+                    Iniciar Sesión
+                    <span>➡️</span>
+                </button>
+            </form>
+            <div id="loginMessage" class="mt-4 text-sm"></div> {/* Para mostrar mensajes */}
+
+            <div class="mt-10 text-sm text-gray-500">
+                <p class="font-semibold text-gray-800">Lumen Instituto Académico</p>
+                <p>© 2025 LIPS</p>
             </div>
-          </div>
-
-          <!-- Documento -->
-          <div class="relative">
-            <label class="text-sm font-semibold text-gray-800 mb-1 block">Documento</label>
-            <div class="relative">
-              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h5a1 1 0 100-2H6V4h8v4a1 1 0 002 0V4a2 2 0 00-2-2H6z"/>
-              </svg>
-              <input
-                type="text"
-                placeholder="Ingresa tu documento"
-                class="w-full pl-10 border border-blue-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
-              />
-            </div>
-          </div>
-
-          <!-- Contraseña -->
-          <div class="relative">
-            <label class="text-sm font-semibold text-gray-800 mb-1 block">Contraseña</label>
-            <div class="relative">
-              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5 8a5 5 0 1110 0v2h1a1 1 0 011 1v7a1 1 0 01-1 1H4a1 1 0 01-1-1v-7a1 1 0 011-1h1V8zm8 0a3 3 0 10-6 0v2h6V8z" clip-rule="evenodd" />
-              </svg>
-              <input
-                type="password"
-                placeholder="Ingresa tu contraseña"
-                class="w-full pl-10 border border-blue-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
-              />
-            </div>
-          </div>
-
-          <!-- Botón -->
-          <button
-            type="submit"
-            class="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 flex items-center justify-center gap-2"
-          >
-            Iniciar Sesión
-            <span>➡️</span>
-          </button>
-        </form>
-
-        <div class="mt-10 text-sm text-gray-500">
-          <p class="font-semibold text-gray-800">Lumen Instituto Académico</p>
-          <p>© 2025 LIPS</p>
         </div>
-      </div>
 
-      <!-- Panel derecho: imagen -->
-      <div class="hidden md:block">
-        <img
-          src="/assets/login_image.jpg"
-          alt="Estudiantes"
-          class="w-full h-full object-cover"
-        />
-      </div>
+        <div class="hidden md:block">
+            <img
+                src="/assets/login_image.jpg" 
+                alt="Estudiantes"
+                class="w-full h-full object-cover"
+            />
+        </div>
     </div>
-  </body>
+
+    <script define:vars={{ BACKEND_URL }}>
+        const loginForm = document.getElementById('loginForm');
+        const codigoInput = document.getElementById('codigo');
+        const documentoInput = document.getElementById('documento');
+        const contrasenaInput = document.getElementById('contrasena');
+        const loginMessage = document.getElementById('loginMessage');
+
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); 
+            
+            loginMessage.textContent = 'Procesando...';
+            loginMessage.className = 'mt-4 text-sm text-gray-600'; 
+
+            const codigo = codigoInput.value;
+            const documento = documentoInput.value;
+            const contrasena = contrasenaInput.value;
+
+            const loginEndpoint = `${BACKEND_URL}/api/auth/login`; 
+
+            try {
+                const response = await fetch(loginEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ codigo, documento, contrasena }),
+                });
+
+                let responseData;
+                const contentType = response.headers.get("content-type");
+                if (contentType && contentType.indexOf("application/json") !== -1) {
+                    responseData = await response.json();
+                } else {
+                    responseData = { error: await response.text() }; 
+                }
+                
+                if (response.ok) {
+                    console.log('Login exitoso:', responseData);
+                    loginMessage.textContent = responseData.message || '¡Inicio de sesión exitoso!';
+                    loginMessage.className = 'mt-4 text-sm text-green-600';
+                    
+                    // Opcional: Guarda el token si tu backend lo envía
+                    if (responseData.token) { 
+                        localStorage.setItem('authToken', responseData.token); 
+                        console.log('Token guardado:', responseData.token);
+                    }
+
+                    // --- MODIFICACIÓN PARA REDIRIGIR ---
+                    // Redirige al dashboard después de un breve momento para que el usuario vea el mensaje.
+                    // Puedes quitar el setTimeout para una redirección inmediata.
+                    setTimeout(() => {
+                        window.location.href = '/dashboard'; // O solo '/dashboard' si tu router lo maneja así
+                    }, 1000); // 1000 ms = 1 segundo
+                    // ------------------------------------
+
+                } else {
+                    console.error('Error de login (respuesta no OK):', response.status, responseData);
+                    loginMessage.textContent = responseData.error || responseData.message || `Error: ${response.statusText || 'Desconocido'}`;
+                    loginMessage.className = 'mt-4 text-sm text-red-600'; 
+                }
+
+            } catch (error) {
+                console.error('Error en la petición de login (Fetch catch):', error);
+                loginMessage.textContent = 'Error de red o el servidor no está disponible. Revisa la consola (F12).';
+                loginMessage.className = 'mt-4 text-sm text-red-600'; 
+            }
+        });
+    </script>
+</body>
 </html>
