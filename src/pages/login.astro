@@ -14,7 +14,11 @@ const BACKEND_URL = 'http://localhost:8081'; // Asegúrate que este sea el puert
 </head>
 <body class="min-h-screen bg-white font-sans">
     <div class="grid grid-cols-1 md:grid-cols-2 h-screen">
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 539343b (Se guardan cambios)
         <div class="flex flex-col justify-center px-8 sm:px-16 md:px-24">
             <h1 class="text-3xl font-bold text-blue-900 mb-8 leading-tight">
                 ¡Bienvenido a nuestro<br />portal!
@@ -87,7 +91,11 @@ const BACKEND_URL = 'http://localhost:8081'; // Asegúrate que este sea el puert
 
         <div class="hidden md:block">
             <img
+<<<<<<< HEAD
                 src="/assets/login_image.jpg" 
+=======
+                src="/assets/login_image.jpg"
+>>>>>>> 539343b (Se guardan cambios)
                 alt="Estudiantes"
                 class="w-full h-full object-cover"
             />
@@ -102,16 +110,27 @@ const BACKEND_URL = 'http://localhost:8081'; // Asegúrate que este sea el puert
         const loginMessage = document.getElementById('loginMessage');
 
         loginForm.addEventListener('submit', async (event) => {
+<<<<<<< HEAD
             event.preventDefault(); 
             
             loginMessage.textContent = 'Procesando...';
             loginMessage.className = 'mt-4 text-sm text-gray-600'; 
+=======
+            event.preventDefault();
+
+            loginMessage.textContent = 'Procesando...';
+            loginMessage.className = 'mt-4 text-sm text-gray-600';
+>>>>>>> 539343b (Se guardan cambios)
 
             const codigo = codigoInput.value;
             const documento = documentoInput.value;
             const contrasena = contrasenaInput.value;
 
+<<<<<<< HEAD
             const loginEndpoint = `${BACKEND_URL}/api/auth/login`; 
+=======
+            const loginEndpoint = `${BACKEND_URL}/api/auth/login`;
+>>>>>>> 539343b (Se guardan cambios)
 
             try {
                 const response = await fetch(loginEndpoint, {
@@ -127,17 +146,30 @@ const BACKEND_URL = 'http://localhost:8081'; // Asegúrate que este sea el puert
                 if (contentType && contentType.indexOf("application/json") !== -1) {
                     responseData = await response.json();
                 } else {
+<<<<<<< HEAD
                     responseData = { error: await response.text() }; 
                 }
                 
+=======
+                    responseData = { error: await response.text() };
+                }
+
+>>>>>>> 539343b (Se guardan cambios)
                 if (response.ok) {
                     console.log('Login exitoso:', responseData);
                     loginMessage.textContent = responseData.message || '¡Inicio de sesión exitoso!';
                     loginMessage.className = 'mt-4 text-sm text-green-600';
+<<<<<<< HEAD
                     
                     // Opcional: Guarda el token si tu backend lo envía
                     if (responseData.token) { 
                         localStorage.setItem('authToken', responseData.token); 
+=======
+
+                    // Opcional: Guarda el token si tu backend lo envía
+                    if (responseData.token) {
+                        localStorage.setItem('authToken', responseData.token);
+>>>>>>> 539343b (Se guardan cambios)
                         console.log('Token guardado:', responseData.token);
                     }
 
@@ -152,13 +184,21 @@ const BACKEND_URL = 'http://localhost:8081'; // Asegúrate que este sea el puert
                 } else {
                     console.error('Error de login (respuesta no OK):', response.status, responseData);
                     loginMessage.textContent = responseData.error || responseData.message || `Error: ${response.statusText || 'Desconocido'}`;
+<<<<<<< HEAD
                     loginMessage.className = 'mt-4 text-sm text-red-600'; 
+=======
+                    loginMessage.className = 'mt-4 text-sm text-red-600';
+>>>>>>> 539343b (Se guardan cambios)
                 }
 
             } catch (error) {
                 console.error('Error en la petición de login (Fetch catch):', error);
                 loginMessage.textContent = 'Error de red o el servidor no está disponible. Revisa la consola (F12).';
+<<<<<<< HEAD
                 loginMessage.className = 'mt-4 text-sm text-red-600'; 
+=======
+                loginMessage.className = 'mt-4 text-sm text-red-600';
+>>>>>>> 539343b (Se guardan cambios)
             }
         });
     </script>

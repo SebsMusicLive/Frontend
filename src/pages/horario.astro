@@ -2,6 +2,29 @@
 import Layout from '../layouts/Layout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Header from '../components/Header.astro';
+<<<<<<< HEAD
+=======
+
+let horarios = [];
+
+try {
+  const res = await fetch('http://localhost:8081/api/horarios');
+  if (!res.ok) {
+    throw new Error(`HTTP error: ${res.status}`);
+  }
+
+  const text = await res.text(); // Evita error si viene vacío
+
+  if (text.trim()) {
+    horarios = JSON.parse(text);
+  } else {
+    horarios = []; // Si viene vacío, usa array vacío
+  }
+} catch (error) {
+  console.error("Error cargando horarios:", error);
+  horarios = []; // Previene crash si hay error
+}
+>>>>>>> 539343b (Se guardan cambios)
 ---
 
 <Layout title="Horario de clases">
@@ -12,6 +35,7 @@ import Header from '../components/Header.astro';
       <Header />
 
       <!-- Contenedor -->
+<<<<<<< HEAD
       <section class="max-w-5xl mx-auto mt-10 px-4">
   <!-- Título -->
   <div class="flex items-center mb-6 gap-2">
@@ -70,3 +94,39 @@ import Header from '../components/Header.astro';
     </main>
   </div>
 </Layout>
+=======
+      <section class="p-4">
+        <h2 class="text-xl font-semibold text-blue-900 mb-4">Horario de clases</h2>
+
+        <div class="overflow-x-auto rounded-xl shadow">
+          <table class="min-w-full text-sm text-left border border-blue-200 bg-blue-50">
+            <thead>
+              <tr class="text-blue-900 font-bold">
+                <th class="px-4 py-2 border-r">Hora inicio</th>
+                <th class="px-4 py-2 border-r">Hora fin</th>
+                <th class="px-4 py-2 border-r">Tipo sesión</th>
+                <th class="px-4 py-2">Curso</th>
+              </tr>
+            </thead>
+            <tbody>
+              {horarios.map((h) => (
+                <tr class="bg-white border-t">
+                  <td class="px-4 py-2 border-r">{new Date(h.horaInicio).toLocaleString()}</td>
+                  <td class="px-4 py-2 border-r">{new Date(h.horaFin).toLocaleString()}</td>
+                  <td class="px-4 py-2 border-r">{h.tipoSesion}</td>
+                  <td class="px-4 py-2">{h.codigoCurso?.nombre ?? 'Sin curso'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <button class="mt-4 px-6 py-2 bg-blue-800 text-white rounded-lg shadow hover:bg-blue-700 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 10V3H7v7H4l6 6 6-6h-3z"/><path d="M4 18h12v-2H4v2z"/></svg>
+          Descargar horario de clases
+        </button>
+      </section>
+    </main>
+  </div>
+</Layout>
+>>>>>>> 539343b (Se guardan cambios)
